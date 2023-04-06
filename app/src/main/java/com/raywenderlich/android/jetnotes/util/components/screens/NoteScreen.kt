@@ -1,3 +1,5 @@
+package com.raywenderlich.android.jetnotes.util.screens
+
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -36,6 +38,7 @@ fun rememberScaffoldState(
 ): ScaffoldState = remember{
     ScaffoldState(drawerState, snackbarHostState)
 }
+
 @Composable
 fun NotesScreen(viewModel: MainViewModel) {
     val notes: List<NoteModel> by viewModel
@@ -43,12 +46,13 @@ fun NotesScreen(viewModel: MainViewModel) {
         .observeAsState(listOf())
     val coroutineScope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()
+
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(
-                        text = "Notes",
+                        text = stringResource(id = R.string.notes),
                         color = MaterialTheme.colors.onPrimary
                     )
                 },
@@ -104,6 +108,7 @@ fun NotesScreen(viewModel: MainViewModel) {
         }
     )
 }
+
 @Composable
 private fun NotesList(
     notes: List<NoteModel>,
@@ -122,8 +127,16 @@ private fun NotesList(
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 private fun NotesListPreview(){
-
+    NotesList(
+        notes = listOf(
+            NoteModel(1, "Заголовок 1", "Описание 1", null),
+            NoteModel(1, "Заголовок 2", "Описание 2", false),
+            NoteModel(1, "Заголовок 3", "Описание 3", true)
+        ),
+        onNoteCheckedChange = {}, onNoteClick = {}
+    )
 }

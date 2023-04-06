@@ -1,6 +1,19 @@
 <resources>
-    <string name="app_name">Notes</string>
+    <string name="app_name">Заметки</string>
     <string name="header">Заголовок</string>
     <string name="content">Содержимое</string>
-    <string name="note">Заметки</string>
+    <string name="notes">Заметки</string>
+    <string name="on_dark_theme">Включить тёмную тему</string>
+    <string name="basket">Корзина</string>
+    <string name="save_note">Сохранение заметки</string>
+    <string name="move">Переместить заметку в корзину?</string>
+    <string name="move_2">переместить заметку в корзину?</string>
+    <string name="sure">Вы уверены, что хотите</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="dismiss">Отменить</string>
+    <string name="checked">Отметить заметку</string>
+    <string name="picked_color">Выбранный цвет</string>
+    <string name="picked_color_2">Выбрать цвет</string>
+    <string name="body">Описание</string>
+    <string name="trash">Мусор</string>
 </resources>

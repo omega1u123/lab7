@@ -1,4 +1,4 @@
-package com.raywenderlich.android.jetnotes.util.screens
+package com.topic2.android.notes.ui.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
@@ -10,6 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import com.raywenderlich.android.jetnotes.R
 import com.raywenderlich.android.jetnotes.domain.model.NoteModel
 import com.raywenderlich.android.jetnotes.routing.Screen
@@ -17,6 +18,7 @@ import com.raywenderlich.android.jetnotes.util.components.AppDrawer
 import com.raywenderlich.android.jetnotes.util.components.Note
 import com.raywenderlich.android.jetnotes.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
+
 
 private const val NO_DIALOG = 1
 private const val RESTORE_NOTES_DIALOG = 2
@@ -95,12 +97,14 @@ fun TrashScreen(viewModel: MainViewModel) {
           text = { Text(mapDialogText(dialog)) },
           confirmButton = {
             TextButton(onClick = confirmAction) {
-              Text("Confirm")
+              Text(text = stringResource(id = R.string.confirm))
             }
           },
           dismissButton = {
             TextButton(onClick = { dialogState.value = NO_DIALOG }) {
-              Text("Dismiss")
+              Text(
+                text = stringResource(id = R.string.dismiss)
+              )
             }
           }
         )
@@ -117,7 +121,9 @@ private fun TrashTopAppBar(
   areActionsVisible: Boolean
 ) {
   TopAppBar(
-    title = { Text(text = "Trash", color = MaterialTheme.colors.onPrimary) },
+    title = { Text(
+      text = stringResource(id = R.string.trash),
+      color = MaterialTheme.colors.onPrimary) },
     navigationIcon = {
       IconButton(onClick = onNavigationIconClick) {
         Icon(

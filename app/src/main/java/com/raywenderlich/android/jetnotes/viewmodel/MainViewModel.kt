@@ -20,38 +20,35 @@ import kotlinx.coroutines.withContext
  */
 class MainViewModel(private val repository: Repository) : ViewModel() {
 
-    val notesNotInTrash: LiveData<List<NoteModel>> by lazy {
-        repository.getAllNotesNotInTrash()
-    }
+    val notesNotInTrash: LiveData<List<NoteModel>> by lazy{ repository.getAllNotesNotInTrash() }
 
     val notesInTrash by lazy { repository.getAllNotesInTrash() }
 
-    private var _noteEntry = MutableLiveData(NoteModel())
+    private var _noteEntry =  MutableLiveData(NoteModel())
     val noteEntry: LiveData<NoteModel> = _noteEntry
 
-    val colors: LiveData<List<ColorModel>> by lazy {
-        repository.getAllColors()
-    }
-
+    val colors: LiveData<List<ColorModel>> by lazy { repository.getAllColors() }
 
     private var _selectedNotes = MutableLiveData<List<NoteModel>>(listOf())
+
     val selectedNotes: LiveData<List<NoteModel>> = _selectedNotes
 
-    fun onCreateNewNoteClick() {
-        // TODO - Open SaveNoteScreen
+    fun onCreateNewNoteClick(){
         _noteEntry.value = NoteModel()
         JetNotesRouter.navigateTo(Screen.SaveNote)
     }
 
-    fun onNoteClick(note: NoteModel) {
-        // TODO - Open SaveNoteScreen in Edit mode
+    fun onNoteClick(note: NoteModel){
         _noteEntry.value = note
         JetNotesRouter.navigateTo(Screen.SaveNote)
-
     }
 
-    fun onNoteCheckedChange(note: NoteModel) {
-        viewModelScope.launch(Dispatchers.Default) {
+    fun onNoteCheckedChange(
+        note: NoteModel
+    ) {
+        viewModelScope.launch(
+            Dispatchers.Default
+        ) {
             repository.insertNote(note)
         }
     }
@@ -84,7 +81,7 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
-    fun onNoteEntryChange(note: NoteModel) {
+    fun onNoteEntryChange(note: NoteModel){
         _noteEntry.value = note
     }
 
@@ -99,10 +96,11 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
-    fun moveNoteToTrash(note: NoteModel) {
-        viewModelScope.launch(Dispatchers.Default) {
+    fun moveNoteToTrash(note: NoteModel){
+        viewModelScope.launch(Dispatchers.Default){
             repository.moveNoteToTrash(note.id)
-            withContext(Dispatchers.Main) {
+
+            withContext(Dispatchers.Main){
                 JetNotesRouter.navigateTo(Screen.Notes)
             }
         }

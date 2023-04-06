@@ -33,7 +33,7 @@ private fun AppDrawerHeader(){
             modifier = Modifier.padding(16.dp)
         )
         Text(
-           text = stringResource(id = R.string.note),
+           text = stringResource(id = R.string.notes),
             modifier = Modifier
                 .align(alignment = Alignment.CenterVertically)
         )

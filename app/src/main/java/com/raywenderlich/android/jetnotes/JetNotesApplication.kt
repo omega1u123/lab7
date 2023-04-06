@@ -6,7 +6,7 @@ import com.raywenderlich.android.jetnotes.dependencyinjection.DependencyInjector
 /**
  * Класс приложения, отвечающий за инициализацию и выполнение зависимостей.
  */
-class NotesApplication : Application() {
+class JetNotesApplication : Application() {
 
   lateinit var dependencyInjector: DependencyInjector
 
