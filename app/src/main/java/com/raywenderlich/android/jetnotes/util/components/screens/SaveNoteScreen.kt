@@ -169,3 +169,14 @@ private fun SaveNoteTopAppBar(
         )
 }
 
+@Preview
+@Composable
+fun SaveNoteTopAppBarPreview(){
+    SaveNoteTopAppBar(
+        isEditingMode = true,
+        onBackClick = {},
+        onSaveNoteClick = {},
+        onOpenColorPickerClick = {},
+        onDeleteNoteClick = {}
+    )
+}
