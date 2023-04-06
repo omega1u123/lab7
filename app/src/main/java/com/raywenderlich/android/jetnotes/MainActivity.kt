@@ -5,7 +5,14 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.compose.setContent
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Surface
+import androidx.compose.runtime.Composable
+import com.raywenderlich.android.jetnotes.routing.JetNotesRouter
+import com.raywenderlich.android.jetnotes.routing.Screen
 import com.raywenderlich.android.jetnotes.theme.JetNotesTheme
+import com.raywenderlich.android.jetnotes.util.screens.TrashScreen
+import com.raywenderlich.android.jetnotes.viewmodel.MainViewModel
 import com.raywenderlich.android.jetnotes.viewmodel.MainViewModelFactory
 
 /**
@@ -49,3 +56,16 @@ class MainActivity : AppCompatActivity() {
     }
   }
 }
+
+@Composable
+@ExperimentalMaterialApi
+private fun MainActivityScreen(viewModel: MainViewModel){
+  Surface{
+    when (JetNotesRouter.currentScreen){
+      is Screen.Notes -> NotesScreen(viewModel)
+      is Screen.SaveNote -> SaveNoteScreen(viewModel)
+      is Screen.Trash -> TrashScreen(viewModel)
+    }
+  }
+}
+
